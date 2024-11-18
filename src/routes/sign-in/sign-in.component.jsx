@@ -1,0 +1,19 @@
+import { signInWithGooglePopup, createUserDatabaseFromAuth } from "../../utils/firebase.utils";
+
+const SignIn = () => {
+    const logGoogleUser = async () => {
+        const { user } = await signInWithGooglePopup();
+        const userDocRef = await createUserDatabaseFromAuth(user); 
+        //console.log(response);
+    }
+    return (
+        <div>
+            <h1>Sign In Page</h1>
+            <button onClick={logGoogleUser}>
+                Sign in with Google
+            </button>
+        </div>
+    );
+}
+
+export default SignIn;
