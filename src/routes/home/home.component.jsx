@@ -32,7 +32,7 @@ const Home = () => {
   ]
 
   return (
-    <Directory key={categories.id} categories={categories}/>
+    <Directory/>
   );
 }
 
