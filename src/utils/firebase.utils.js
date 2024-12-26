@@ -100,7 +100,7 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
           console.log('Error created the user', error.message)
         } 
     }
-    return userDocRef; 
+    return userSnapShot; 
     
     
 }
