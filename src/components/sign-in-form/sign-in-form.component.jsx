@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { signInAuthUserWithEmailAndPassword } from "../../utils/firebase.utils";
 import FormInput from "../form-input/form-input.component";
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 import { SignInButtons, SignUpContainer } from "./sign-in-form.styles";
