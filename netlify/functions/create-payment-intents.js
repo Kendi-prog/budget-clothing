@@ -1,4 +1,3 @@
-const { CurrencySelectorElement } = require("@stripe/react-stripe-js");
 
 require("dotenv").config();
 

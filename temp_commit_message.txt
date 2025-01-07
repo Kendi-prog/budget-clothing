@@ -1,0 +1,39 @@
+For continuation of my development
+# Please enter a commit message to explain why this merge is necessary,
+# especially if it merges an updated upstream into a topic branch.
+#
+# Lines starting with '#' will be ignored, and an empty message aborts
+# the commit.
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please run
+#	git update-ref -d MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+# Your branch and 'origin/main' have diverged,
+# and have 1 and 2 different commits each, respectively.
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   .env
+#	modified:   .gitignore
+#	new file:   netlify/functions/create-payment-intents.js
+#	modified:   package-lock.json
+#	modified:   package.json
+#	new file:   src/components/payment-form/payment-form.component.jsx
+#	new file:   src/components/payment-form/payment-form.styles.jsx
+#	modified:   src/components/sign-in-form/sign-in-form.component.jsx
+#	modified:   src/components/sign-up-form/sign-up-form.component.jsx
+#	modified:   src/index.js
+#	modified:   src/routes/checkout/checkout.component.jsx
+#	modified:   src/store/categories/category.saga.js
+#	modified:   src/store/user/user.saga.js
+#	renamed:    src/utils/firebace/firebase.utils.js -> src/utils/firebase/firebase.utils.js
+#	modified:   src/utils/stripe/stripe.utils.js
+#
