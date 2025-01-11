@@ -1,9 +1,4 @@
-//import { configureStore } from "@reduxjs/toolkit";
 import { compose, createStore, applyMiddleware, Middleware } from "redux";
-// import {persistReducer} from "redux-persist/es/persistReducer";
-// import {persistStore, PersistConfig} from "redux-persist/es/persistStore";
-// import storage from 'redux-persist/lib/storage';
-// import logger from "redux-logger";
 import storage from "redux-persist/lib/storage"
 import { persistStore, persistReducer, PersistConfig } from "redux-persist"; 
 import logger from "redux-logger";

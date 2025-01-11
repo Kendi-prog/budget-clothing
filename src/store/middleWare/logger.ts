@@ -1,13 +1,18 @@
-import { Middleware } from "redux";
+import { Middleware } from 'redux';
+import { RootState } from '../store';
+import { AnyAction } from 'redux';
 
-import { RootState } from "../store";
+interface KnownAction extends AnyAction {
+    type: string;
+    payload?: any;
+}
 
+function isKnownAction(action: AnyAction): action is KnownAction {
+    return action.type !== undefined;
+}
 
-
-
-
-export const loggerMiddleWare : Middleware<{}, RootState> = (store) => (next) => (action) => {
-    if(!action.type){
+export const loggerMiddleware: Middleware<{}, RootState> = (store) => (next) => (action: unknown) => {
+    if (!isKnownAction(action as AnyAction)) {
         return next(action);
     }
 

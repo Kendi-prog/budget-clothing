@@ -4,9 +4,9 @@ import { useDispatch } from "react-redux";
 import Home from "./routes/home/home.component";
 import Navigation from "./routes/navigation/navigation.component";
 import Authentication from "./routes/authentication/authentication";
-import Shop from './routes/shop/shop.component.jsx';
-import Checkout from "./routes/checkout/checkout.component.jsx";
-import { checkUserSession } from "./store/user/user.action.js";
+import Shop from './routes/shop/shop.component';
+import Checkout from "./routes/checkout/checkout.component";
+import { checkUserSession } from "./store/user/user.action";
 
 
 
