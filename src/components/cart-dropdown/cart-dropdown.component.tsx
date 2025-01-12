@@ -1,10 +1,10 @@
-import './cart-dropdown.jsx';
+import './cart-dropdown';
 import Button from '../button/button.component';
 import CartItem from '../cart-item/cart-item.component';
 import { useSelector } from 'react-redux';
 import { selectCartItems } from '../../store/cart/cart.selector';
 import { useNavigate } from 'react-router-dom';
-import { CartDropdownContainer, EmptyMessage, CartItemsContainer } from './cart-dropdown.jsx';
+import { CartDropdownContainer, EmptyMessage, CartItemsContainer } from './cart-dropdown';
 
 const CartDropdown = () => {
     const cartItems = useSelector(selectCartItems);

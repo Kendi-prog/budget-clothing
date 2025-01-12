@@ -8,12 +8,15 @@ export enum BUTTON_TYPE_CLASSES {
     inverted= 'inverted',
 };
 
-const getButton = (buttonType = BUTTON_TYPE_CLASSES.base): typeof BaseButton => 
-    ({
+const getButton = (
+    buttonType: BUTTON_TYPE_CLASSES = BUTTON_TYPE_CLASSES.base
+): React.ComponentType<ButtonHTMLAttributes<HTMLButtonElement>> => {
+    return ({
         [BUTTON_TYPE_CLASSES.base]: BaseButton,
         [BUTTON_TYPE_CLASSES.google]: GoogleButton,
         [BUTTON_TYPE_CLASSES.inverted]: InvertedButton
     }[buttonType]);
+};
 
 
 type ButtonProps = {
