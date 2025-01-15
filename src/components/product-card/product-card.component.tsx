@@ -3,7 +3,7 @@ import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItemToCart } from '../../store/cart/cart.action';
 import { selectCartItems } from '../../store/cart/cart.selector';
-import { ProductCardContainer, Footer, Name, Price } from './product-card.styles.jsx';
+import { ProductCardContainer, Footer, Name, Price } from './product-card.styles';
 import { CategoryItem } from '../../store/categories/category.types';
 
 type ProductCardProps = {
