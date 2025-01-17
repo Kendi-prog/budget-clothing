@@ -77,6 +77,7 @@ const SignInForm = () => {
                 />
                 <SignInButtons>
                     <Button type="submit">Sign In</Button>
+                    <br/>
                     <Button buttonType={BUTTON_TYPE_CLASSES.google} onClick={signInWithGoogle}>Google sign in</Button>
                 </SignInButtons>   
             </form>
