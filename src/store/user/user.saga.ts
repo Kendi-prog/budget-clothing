@@ -23,7 +23,10 @@ import {
 } from "../../utils/firebase/firebase.utils";
 
 
-export function* getSnapshotFromUserAuth(userAuth : User, additionalInformation?: AdditionalInformation) {
+export function* getSnapshotFromUserAuth(
+    userAuth : User, 
+    additionalInformation?: AdditionalInformation
+) {
     try{
         const userSnapshot = yield* call(
             createUserDocumentFromAuth, 

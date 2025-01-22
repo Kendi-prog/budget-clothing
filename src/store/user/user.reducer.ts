@@ -8,14 +8,14 @@ export type UserState = {
     readonly error: Error | null
 }
 
-const INITIAL_STATE : UserState = {
+const USER_INITIAL_STATE : UserState = {
     currentUser: null,
     isLoading: false,
     error: null,
 }
 
  export const userReducer = (
-    state = INITIAL_STATE, 
+    state = USER_INITIAL_STATE, 
     action: AnyAction
 ): UserState => {
    if(signInSuccess.match(action)){
