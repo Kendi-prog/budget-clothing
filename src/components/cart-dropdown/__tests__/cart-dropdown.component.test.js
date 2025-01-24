@@ -1,13 +1,25 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import { Provider } from "react-redux";
+import configureStore from "redux-mock-store";
 import CartDropdown from "../cart-dropdown.component";
-import { mock } from "node:test";
 
+const mockStore = configureStore([]);
+const initialState = {
+    cart: {
+        cartItems: []
+    }
+};
+const store = mockStore(initialState);
 
 describe('cart-dropdown tests', () => {
     test('renders empty message when cart is empty', () => {
-        render(<CartDropdown cartItems={[]} />);
+        render(
+            <Provider store={store}>
+                <CartDropdown />
+            </Provider>
+        );
 
-        const cartDropdownElement = screen.getByText('/your cart is empty/i');
+        const cartDropdownElement = screen.getByText(/your cart is empty/i);
         expect(cartDropdownElement).toBeInTheDocument();
     });
 
@@ -29,7 +41,17 @@ describe('cart-dropdown tests', () => {
             }
         ];
 
-        render(<CartDropdown cartItems={mockCartItems} />);
+        const storeWithItems = mockStore({
+            cart: {
+                cartItems: mockCartItems
+            }
+        });
+
+        render(
+            <Provider store={storeWithItems}>
+                <CartDropdown />
+            </Provider>
+        );
 
         const cartDropdownElement = screen.getByRole('cart-dropdown');
         expect(cartDropdownElement).toBeInTheDocument();
@@ -54,7 +76,17 @@ describe('cart-dropdown tests', () => {
             }
         ];
 
-        render(<CartDropdown cartItems={mockCartItems} navigate={navigate} />);
+        const storeWithItems = mockStore({
+            cart: {
+                cartItems: mockCartItems
+            }
+        });
+
+        render(
+            <Provider store={storeWithItems}>
+                <CartDropdown navigate={navigate} />
+            </Provider>
+        );
         const checkoutButtonElement = screen.getByRole('button', { name: /checkout/i });
         fireEvent.click(checkoutButtonElement);
         expect(navigate).toHaveBeenCalled();
