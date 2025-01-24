@@ -5,7 +5,11 @@ import CheckoutItem from "../checkout-item.component";
 import { clearItemFromCart } from "../../../store/cart/cart.action";
 
 const mockStore = configureStore([]);
-const store = mockStore({});
+const store = mockStore({
+    cart: {
+        cartItems: []
+    }
+});
 
 describe('checkout-item tests', () => {
     test('render item details correctly', () => {
@@ -18,10 +22,10 @@ describe('checkout-item tests', () => {
 
         render(
             <Provider store={store}>
-                <CheckoutItem item={mockItem} />
+                <CheckoutItem cartItem={mockItem} />
             </Provider>
         );
-        const checkoutItemElement = screen.getByRole('checkout-item');
+        const checkoutItemElement = screen.getByText(/item 1/i);
         expect(checkoutItemElement).toBeInTheDocument();
     });
 
@@ -35,7 +39,7 @@ describe('checkout-item tests', () => {
 
         render(
             <Provider store={store}>
-                <CheckoutItem item={mockItem} />
+                <CheckoutItem cartItem={mockItem} />
             </Provider>
         );
 
@@ -56,11 +60,11 @@ describe('checkout-item tests', () => {
 
         render(
             <Provider store={store}>
-                <CheckoutItem item={mockItem} />
+                <CheckoutItem cartItem={mockItem} />
             </Provider>
         );
 
-        const rightArrow = screen.getByRole('button', { name: /&#10095/i });
+        const rightArrow = screen.getByText('&#10095');
         fireEvent.click(rightArrow);
 
         const actions = store.getActions();
@@ -77,11 +81,11 @@ describe('checkout-item tests', () => {
 
         render(
             <Provider store={store}>
-                <CheckoutItem item={mockItem} />
+                <CheckoutItem cartItem={mockItem} />
             </Provider>
         );
 
-        const leftArrow = screen.getByRole('button', { name: /&#10094/i });
+        const leftArrow = screen.getByText('<');
         fireEvent.click(leftArrow);
 
         const actions = store.getActions();

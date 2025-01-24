@@ -10,8 +10,8 @@ describe('cart-item tests', () => {
             quantity: 1
         };
 
-        render(<CartItem item={mockItem} />);
-        const cartItemElement = screen.getByRole('cart-item');
+        render(<CartItem cartItem={mockItem} />);
+        const cartItemElement = screen.getByText(/item 1/i);
         expect(cartItemElement).toBeInTheDocument();
     });
 });
