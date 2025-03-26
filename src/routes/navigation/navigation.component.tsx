@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ReactComponent as  CrwnLogo } from '../../assets/crown.svg';
@@ -14,8 +14,12 @@ const Navigation = () => {
     const dispatch = useDispatch();
     const currentUser = useSelector(selectCurrentUser);
     const isCartOpen = useSelector(selectIsCartOpen);
+    const navigate = useNavigate();
 
-    const signOutUser = () => dispatch(signOutStart());
+    const signOutUser = () => {
+        dispatch(signOutStart());
+        navigate('/auth');
+    }
 
     return (
         <Fragment>

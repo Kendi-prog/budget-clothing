@@ -1,5 +1,6 @@
 import { useState, FormEvent, ChangeEvent } from "react";
 import { AuthError, AuthErrorCodes } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import FormInput from "../form-input/form-input.component";
 import Button from '../button/button.component';
@@ -20,6 +21,7 @@ const SignUpForm = () => {
     const [ formFields, setFormFields ] = useState(defaultFormFields);
     const { displayName, email, password, confirmPassword } = formFields;
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     console.log(formFields);
 
@@ -37,6 +39,7 @@ const SignUpForm = () => {
 
         try{
             dispatch(signUpStart(email, password, displayName));
+            navigate('/');
             resetFormFields();
            
         } catch(error){
