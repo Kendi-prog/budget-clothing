@@ -10,6 +10,7 @@ import {
     onAuthStateChanged,
     User,
     NextOrObserver,
+    RecaptchaVerifier,
 }
 from "firebase/auth";
 
@@ -35,7 +36,8 @@ const firebaseConfig = {
   projectId: "ecommerce-clothing-db-41729",
   storageBucket: "ecommerce-clothing-db-41729.firebasestorage.app",
   messagingSenderId: "525386244789",
-  appId: "1:525386244789:web:50e8955221fce8f20254fc"
+  appId: "1:525386244789:web:50e8955221fce8f20254fc",
+  recaptchaKey: "6LdFuAErAAAAAJ_8tBW1Gv8GsoAyghr09HUv0jsA",
 };
 
 
@@ -160,3 +162,34 @@ export const getCurrentUser = () : Promise<User | null> => {
         )
     })
 }
+
+
+
+
+declare global {
+  interface Window {
+    recaptchaVerifier?: RecaptchaVerifier;
+  }
+}
+
+// Function to Set Up reCAPTCHA
+export const setupRecaptcha = (
+    elementId: string,
+    setRecaptchaVerified: React.Dispatch<React.SetStateAction<boolean>>
+  ) => {
+    const auth = getAuth(FirebaseApp); // ✅ Get the Auth instance
+  
+    if (!window.recaptchaVerifier) {
+      window.recaptchaVerifier = new RecaptchaVerifier(auth, elementId, {
+        size: "normal",
+        callback: () => {
+          setRecaptchaVerified(true); // ✅ reCAPTCHA passed
+        },
+        "expired-callback": () => {
+          setRecaptchaVerified(false); // ❌ reCAPTCHA expired
+        },
+      });
+  
+      window.recaptchaVerifier.render();
+    }
+  };

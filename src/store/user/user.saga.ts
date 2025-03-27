@@ -1,5 +1,5 @@
 import { all, call, takeLatest, put } from "typed-redux-saga/macro";
-import { User } from "firebase/auth";
+import { User, AuthError, AuthErrorCodes } from "firebase/auth";
 import { 
     signInSuccess, 
     signInFailed, 
@@ -58,7 +58,15 @@ export function* signInWithEmail({ payload: { email, password } } : EmailSignInS
             yield* call(getSnapshotFromUserAuth, user);
         }
     }catch(error) {
-        yield* put(signInFailed(error as Error));
+        const authError = error as AuthError;
+        
+        if (authError.code === AuthErrorCodes.INVALID_PASSWORD || authError.code === AuthErrorCodes.USER_DELETED) {
+            yield* put(signInFailed(new Error("Invalid email or password.")));
+        } else if (authError.code === AuthErrorCodes.TOO_MANY_ATTEMPTS_TRY_LATER) {
+            yield* put(signInFailed(new Error("Too many failed attempts. Please try again later.")));
+        } else {
+            yield* put(signInFailed(authError)); // Catch other errors
+        }
     }
 }
 

@@ -17,6 +17,7 @@ export const SignUpContainer = styled.div`
 export const SignInButtons = styled.div`
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
 
     @media screen and (max-width: 800px){
         flex-direction: column;

@@ -1,4 +1,4 @@
-import { useState, FormEvent, ChangeEvent } from "react";
+import { useState, FormEvent, ChangeEvent, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthError, AuthErrorCodes } from "firebase/auth";
 import { useDispatch } from "react-redux";
@@ -6,6 +6,7 @@ import FormInput from "../form-input/form-input.component";
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 import { SignInButtons, SignUpContainer } from "./sign-in-form.styles";
 import { googleSignInStart, emailSignInStart } from "../../store/user/user.action";
+import { setupRecaptcha } from "../../utils/firebase/firebase.utils";
 
 
 const defaultFormFields = {
@@ -13,13 +14,19 @@ const defaultFormFields = {
     password: '',
 }
 
+
 const SignInForm = () => {
     const dispatch = useDispatch();
-    const [ formFields, setFormFields ] = useState(defaultFormFields);
-    const { email, password } = formFields;
     const navigate = useNavigate();
 
-    console.log(formFields);
+    const [ formFields, setFormFields ] = useState(defaultFormFields);
+    const { email, password } = formFields;
+
+    const [recaptchaVerified, setRecaptchaVerified] = useState<boolean>(false);
+
+    useEffect(() => {
+        setupRecaptcha("recaptcha-container", setRecaptchaVerified);
+      }, []);
 
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
@@ -32,6 +39,10 @@ const SignInForm = () => {
     const handleSubmit = async (event : FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
+        if (!recaptchaVerified) {
+            alert("Please complete the reCAPTCHA before signing in.");
+            return;
+          }
 
         try{
             dispatch(emailSignInStart(email, password));
@@ -58,6 +69,7 @@ const SignInForm = () => {
         <SignUpContainer>
             <h2>Already have an account?</h2>
             <span>Sign in with your email and password</span>
+
             <form onSubmit={handleSubmit}>
                 <FormInput
                     label="Email"
@@ -66,7 +78,7 @@ const SignInForm = () => {
                     onChange={handleChange} 
                     name="email" 
                     value={email}
-
+                
                 />
 
                 <FormInput
@@ -76,14 +88,16 @@ const SignInForm = () => {
                     onChange={handleChange} 
                     name="password" 
                     value={password}
-
+                    
                 />
+                <div id="recaptcha-container"></div>
                 <SignInButtons>
                     <Button type="submit">Sign In</Button>
                     <br/>
                     <Button buttonType={BUTTON_TYPE_CLASSES.google} onClick={signInWithGoogle}>Google sign in</Button>
                 </SignInButtons>   
             </form>
+            
         </SignUpContainer>
     );
 }
