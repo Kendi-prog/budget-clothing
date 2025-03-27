@@ -29,6 +29,16 @@ const SignUpForm = () => {
         setFormFields(defaultFormFields);
     }
 
+    const isStrongPassword = (password: string): boolean => {
+        return password.length >= 8 && /[A-Z]/.test(password) && /\d/.test(password);
+    };
+    
+    const isDisposableEmail = (email: string): boolean => {
+        const disposableDomains = ["tempmail.com", "10minutemail.com", "mailinator.com"];
+        return disposableDomains.some(domain => email.endsWith(`@${domain}`));
+    };
+    
+
     const handleSubmit = async (event : FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -37,8 +47,22 @@ const SignUpForm = () => {
             return;
         }
 
+
+        if (!isStrongPassword(password)) {
+            alert("Password must be at least 8 characters long, include an uppercase letter, and a number.");
+            return;
+        }
+    
+   
+        const normalizedEmail: string = email.toLowerCase();
+    
+        if (isDisposableEmail(normalizedEmail)) {
+            alert("Please use a valid email address.");
+            return;
+        }
+
         try{
-            dispatch(signUpStart(email, password, displayName));
+            dispatch(signUpStart(normalizedEmail, password, displayName));
             navigate('/');
             resetFormFields();
            
