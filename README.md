@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# Budget Clothing 🛍️
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack e-commerce web app for browsing and purchasing clothing by category — built with React, TypeScript, and Firebase.
 
-## Available Scripts
+**🔗 Live demo:** [budgetclothing.netlify.app](https://budgetclothing.netlify.app/)
 
-In the project directory, you can run:
+<!-- Add 1-2 screenshots or a short GIF here once ready, e.g.: -->
+![Homepage screenshot](./screenshots/home.png) 
+![Authentication screenshot](./screenshots/auth.png) 
+![Item filtered screenshot](./screenshots/item.png) 
+![Cart screenshot](./screenshots/cart.png) 
+![Checkout page screenshot](./screenshots/checkout.png) 
+![Payment screenshot](./screenshots/pay.png) 
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Authentication** — New users can sign up, returning users sign in, with bot protection (reCAPTCHA) on login. Built with Firebase Authentication.
+- **Category filtering** — Browse clothing by category (Hats, Women's, Men's, Jackets, Sneakers) and add items directly to cart.
+- **Live cart** — Cart updates in real time as items are added.
+- **Checkout flow** — Review all cart items, adjust quantities or remove items, and see the running total calculated automatically. Supports card payment.
 
-### `npm test`
+## Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Frontend:** React, TypeScript — chose TypeScript to catch bugs at compile time rather than runtime, especially around cart and checkout state (item quantities, prices, totals) where a type error could silently produce a wrong total.
+- **Styling:** CSS
+- **Database:** Firestore — stores product data (categories, prices, stock) with real-time reads for the catalog and filtering.
+- **Authentication:** Firebase Authentication — handles sign up, sign in, and session management.
+- **Payments:** Stripe — processes card payments at checkout.
+- **Serverless functions:** Netlify Functions — server-side logic for Stripe payment processing, keeping API keys off the client.
+- **Hosting:** Netlify
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Clone the repo and install dependencies:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone https://github.com/Kendi-prog/budget-clothing.git
+cd budget-clothing
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Add your Firebase config to a `.env` file (see `.env.example` if available):
 
-### `npm run eject`
+```
+REACT_APP_FIREBASE_API_KEY=your_key_here
+REACT_APP_FIREBASE_PROJECT_ID=your_project_id
+REACT_APP_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+...
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Run the app locally:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## What I'd Improve Next
 
-## Learn More
+- Add order history for logged-in users
+- Add search functionality alongside category filters
+- Write tests for the checkout calculation logic
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Author
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Kendi** — [GitHub](https://github.com/Kendi-prog)
