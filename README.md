@@ -1,68 +1,131 @@
-# Budget Clothing 🛍️
+# Budget Clothing
 
-A full-stack e-commerce web app for browsing and purchasing clothing by category — built with React, TypeScript, and Firebase.
+A modern full-stack e-commerce web application for browsing, filtering, and purchasing clothing online. The application provides a seamless shopping experience with secure authentication, real-time cart management, and Stripe-powered payments.
 
-**🔗 Live demo:** [budgetclothing.netlify.app](https://budgetclothing.netlify.app/)
+Built with **React**, **TypeScript**, **Firebase**, and **Stripe**, the project demonstrates modern frontend development practices together with serverless backend functionality.
 
-<!-- Add 1-2 screenshots or a short GIF here once ready, e.g.: -->
-![Homepage screenshot](./screenshots/home.png) 
-![Authentication screenshot](./screenshots/auth.png) 
-![Item filtered screenshot](./screenshots/item.png) 
-![Cart screenshot](./screenshots/cart.png) 
-![Checkout page screenshot](./screenshots/checkout.png) 
-![Payment screenshot](./screenshots/pay.png) 
+---
 
+## 🌐 Live Demo
 
-## Features
+**Application:** https://budgetclothing.netlify.app/
 
-- **Authentication** — New users can sign up, returning users sign in, with bot protection (reCAPTCHA) on login. Built with Firebase Authentication.
-- **Category filtering** — Browse clothing by category (Hats, Women's, Men's, Jackets, Sneakers) and add items directly to cart.
-- **Live cart** — Cart updates in real time as items are added.
-- **Checkout flow** — Review all cart items, adjust quantities or remove items, and see the running total calculated automatically. Supports card payment.
+---
 
-## Tech Stack
+## 📸 Screenshots
 
-- **Frontend:** React, TypeScript — chose TypeScript to catch bugs at compile time rather than runtime, especially around cart and checkout state (item quantities, prices, totals) where a type error could silently produce a wrong total.
-- **Styling:** CSS
-- **Database:** Firestore — stores product data (categories, prices, stock) with real-time reads for the catalog and filtering.
-- **Authentication:** Firebase Authentication — handles sign up, sign in, and session management.
-- **Payments:** Stripe — processes card payments at checkout.
-- **Serverless functions:** Netlify Functions — server-side logic for Stripe payment processing, keeping API keys off the client.
-- **Hosting:** Netlify
+<p align="center">
+  <img src="./screenshots/home.png" alt="Homepage" width="48%">
+  <img src="./screenshots/auth.png" alt="Authentication" width="48%">
+</p>
 
-## Getting Started
+<p align="center">
+  <img src="./screenshots/item.png" alt="Category Filtering" width="48%">
+  <img src="./screenshots/cart.png" alt="Shopping Cart" width="48%">
+</p>
 
-Clone the repo and install dependencies:
+<p align="center">
+  <img src="./screenshots/checkout.png" alt="Checkout" width="48%">
+  <img src="./screenshots/pay.png" alt="Payment" width="48%">
+</p>
+
+---
+
+## ✨ Features
+
+- Secure user authentication using Firebase Authentication
+- User registration and sign in with reCAPTCHA protection
+- Browse products by clothing category
+- Real-time shopping cart updates
+- Quantity management directly from the cart
+- Dynamic checkout with automatic total calculation
+- Secure card payments powered by Stripe
+- Responsive user interface for desktop and mobile devices
+
+---
+
+## 🛠 Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| React | User Interface |
+| TypeScript | Type safety and maintainability |
+| CSS | Application styling |
+| Firebase Authentication | User authentication |
+| Firestore | Product database |
+| Stripe | Payment processing |
+| Netlify Functions | Secure server-side payment handling |
+| Netlify | Application hosting |
+
+---
+
+## 📁 Project Structure
+
+```text
+src/
+├── assets/
+├── components/
+├── routes/
+├── store/
+├── utils/
+├── App.tsx
+└── index.tsx
+```
+
+---
+
+## 🚀 Getting Started
+
+### Clone the repository
 
 ```bash
 git clone https://github.com/Kendi-prog/budget-clothing.git
 cd budget-clothing
+```
+
+### Install dependencies
+
+```bash
 npm install
 ```
 
-Add your Firebase config to a `.env` file (see `.env.example` if available):
+### Configure environment variables
 
-```
-REACT_APP_FIREBASE_API_KEY=your_key_here
-REACT_APP_FIREBASE_PROJECT_ID=your_project_id
-REACT_APP_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
-...
+Create a `.env` file and add your Firebase and Stripe configuration.
+
+```env
+REACT_APP_FIREBASE_API_KEY=your_key
+REACT_APP_FIREBASE_PROJECT_ID=your_project
+REACT_APP_STRIPE_PUBLISHABLE_KEY=your_key
 ```
 
-Run the app locally:
+### Start the application
 
 ```bash
 npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The application will be available at:
 
-## What I'd Improve Next
+```
+http://localhost:3000
+```
 
-- Add order history for logged-in users
-- Add search functionality alongside category filters
-- Write tests for the checkout calculation logic
+---
 
-## Author
+## 🔮 Future Improvements
 
-**Kendi** — [GitHub](https://github.com/Kendi-prog)
+- User order history
+- Product search
+- Wishlist functionality
+- Product reviews and ratings
+- Automated testing
+- Admin dashboard for inventory management
+
+---
+
+## 👨‍💻 Author
+
+**Joy Leila Kendi**
+
+GitHub: https://github.com/Kendi-prog
